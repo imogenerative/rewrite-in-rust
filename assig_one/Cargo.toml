@@ -1,0 +1,6 @@
+[package]
+name = "assig_one"
+version = "0.1.0"
+authors = ["Imogen Fulton <imogen@dfdt.me>"]
+
+[dependencies]
