@@ -20,19 +20,19 @@ impl Node {
         }
     }
 
-    pub fn getData(self) -> Solution {
+    pub fn get_data(self) -> Solution {
         self.data
     }
 
-    pub fn getNext(self) -> Link {
+    pub fn get_next(self) -> Link {
         self.next
     }
 
-    pub fn setData(&mut self, s: Solution) {
+    pub fn set_data(&mut self, s: Solution) {
         self.data = s
     }
 
-    pub fn setNext(&mut self, l: Link) {
+    pub fn set_next(&mut self, l: Link) {
         self.next = l
     } 
 }

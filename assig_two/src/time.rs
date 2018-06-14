@@ -19,29 +19,29 @@ impl Time {
         self.second = second;
     }
 
-    pub fn incHour(&mut self) {
+    pub fn inc_hour(&mut self) {
         self.hour += 1;
     }
 
-    pub fn incMinute(&mut self) {
+    pub fn inc_minute(&mut self) {
         self.minute += 1;
 
         if self.minute == 60 {
             self.minute = 0;
-            Time::incHour(self);
+            Time::inc_hour(self);
         }
     }
 
-    pub fn incSecond(&mut self) {
+    pub fn inc_second(&mut self) {
         self.second += 1;
 
         if self.second == 60 {
             self.second = 0;
-            Time::incMinute(self);
+            Time::inc_minute(self);
         }
     }
 
-    pub fn toString(&mut self) -> String {
+    pub fn to_string(&mut self) -> String {
         if self.hour >= 12 {
             if self.hour == 12 {
                 return format!("{:02}:{:02}:{:02} PM", 12, self.minute, self.second);
@@ -57,15 +57,15 @@ impl Time {
         }
     }
 
-    pub fn toMilString (&mut self) -> String {
+    pub fn to_mil_string (&mut self) -> String {
         return format!("{:02}:{:02}:{:02}", self.hour, self.minute, self.second);
     }
 
-    pub fn secondsSinceMidnight(self) -> i32 {
+    pub fn secs_since_midnight(self) -> i32 {
         self.second + (self.minute * 60) + (self.hour * 60 * 60)
     }
 
     pub fn equals(self, t: Time) -> bool {
-        self.secondsSinceMidnight() == t.secondsSinceMidnight()
+        self.secs_since_midnight() == t.secs_since_midnight()
     }
 }
