@@ -44,21 +44,21 @@ impl Time {
     pub fn toString(&mut self) -> String {
         if self.hour >= 12 {
             if self.hour == 12 {
-                return format!("{}:{}:{:} PM", 12, self.minute, self.second);
+                return format!("{:02}:{:02}:{:02} PM", 12, self.minute, self.second);
             } else {
-                return format!("{}:{}:{} PM", self.hour - 12, self.minute, self.second);
+                return format!("{:02}:{:02}:{:02} PM", self.hour - 12, self.minute, self.second);
             }
         } else {
             if self.hour == 0 {
-                return format!("{}:{}:{} AM", 12, self.minute, self.second);
+                return format!("{:02}:{:02}:{:02} AM", 12, self.minute, self.second);
             } else {
-                return format!("{}:{}:{} AM", self.hour, self.minute, self.second);
+                return format!("{:02}:{:02}:{:02} AM", self.hour, self.minute, self.second);
             }
         }
     }
 
     pub fn toMilString (&mut self) -> String {
-        return format!("{}:{}:{}", self.hour, self.minute, self.second);
+        return format!("{:02}:{:02}:{:02}", self.hour, self.minute, self.second);
     }
 
     pub fn secondsSinceMidnight(self) -> i32 {
