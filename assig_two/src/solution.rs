@@ -2,52 +2,52 @@ use time::Time;
 
 #[derive (Copy, Clone)]
 pub struct Solution {
-    ftime: Time,
+    time: Time,
     degree: i32,
     x: f32,
     y: f32,
 }
 
 impl Solution {
-    pub fn new(ftime: Time, degree: i32, x: f32, y: f32) -> Self {
+    pub fn new(time: Time, degree: i32, x: f32, y: f32) -> Self {
         Solution {
-            ftime: ftime,
+            time: time,
             degree: degree,
             x: x,
             y: y,
         }
     }
 
-    pub fn get_time(self) -> Time {
-        self.ftime
-    }
-
     pub fn set_time(&mut self, t: Time) {
-        self.ftime = t
-    }
-
-    pub fn get_degree(self) -> i32 {
-        self.degree
+        self.time = t;
     }
 
     pub fn set_degree(&mut self, d: i32) {
-        self.degree = d
-    }
-
-    pub fn get_x(self) -> f32 {
-        self.x
+        self.degree = d;
     }
 
     pub fn set_x(&mut self, x: f32) {
-        self.x = x
-    }
-
-    pub fn get_y(self) -> f32 {
-        self.y
+        self.x = x;
     }
 
     pub fn set_y(&mut self, y: f32) {
-        self.y = y
+        self.y = y;
+    }
+
+    pub fn get_time(&mut self) -> Time{
+        self.time
+    }
+
+    pub fn get_degree(&mut self) -> i32{
+        self.degree
+    }
+
+    pub fn get_x(&mut self) -> f32 {
+        self.x
+    }
+
+    pub fn get_y(&mut self) -> f32 {
+        self.y
     }
 }
 
@@ -61,6 +61,7 @@ mod test {
         let mut time = Time::new();
         let mut solution = Solution::new(time, 0, 0.0, 0.0);
 
+        // check setters all work
         let mut second_time = Time::new();
         second_time.assign(12, 0, 0);
         solution.set_time(second_time);
@@ -68,9 +69,10 @@ mod test {
         solution.set_x(1.0);
         solution.set_y(2.0);
 
-        assert_eq!(solution.get_time().secs_since_midnight(), 43200);
-        assert_eq!(solution.get_degree(), 180);
-        assert_eq!(solution.get_x(), 1.0);
-        assert_eq!(solution.get_y(), 2.0);
+        // confirm setters populated the solution
+        assert_eq!(solution.time.secs_since_midnight(), 43200);
+        assert_eq!(solution.degree, 180);
+        assert_eq!(solution.x, 1.0);
+        assert_eq!(solution.y, 2.0);
     }
 }

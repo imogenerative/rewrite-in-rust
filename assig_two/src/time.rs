@@ -42,6 +42,12 @@ impl Time {
         }
     }
 
+    pub fn add_time(&mut self, s: f32) {
+        for i in 0..s as i32 {
+            Time::inc_second(self);
+        }
+    }
+
     pub fn to_string(&mut self) -> String {
         if self.hour >= 12 {
             if self.hour == 12 {
@@ -80,11 +86,17 @@ mod test {
         let mut time = Time::new();
         time.assign(12, 30 , 0);
 
+        // check the time is correct
         assert_eq!(time.secs_since_midnight(), 45000);
 
+        // check two equal times are equal
         let mut second_time = Time::new();
         second_time.assign(12, 30, 0);
         assert_eq!(time.equals(second_time), true);
+
+        // check two unequal times are unequal
+        time.assign(12, 0, 0);
+        assert_eq!(time.equals(second_time), false)
     }
 
     #[test]
@@ -92,10 +104,13 @@ mod test {
         let mut time = Time::new();
         time.assign(0, 58, 59);
 
+        // check inc functions result in the expected time
         time.inc_hour();
         time.inc_minute();
         time.inc_second();
         assert_eq!(time.secs_since_midnight(), 7200);
+        time.add_time(10.0);
+        assert_eq!(time.secs_since_midnight(), 7210);
     }
 
     #[test]
@@ -103,6 +118,7 @@ mod test {
         let mut time = Time::new();
         time.assign(12, 0, 0);
 
+        // chect string functions return the expected output
         assert_eq!(time.to_string(), "12:00:00 PM");
         time.assign(0, 0, 0);
         assert_eq!(time.to_string(), "12:00:00 AM");
